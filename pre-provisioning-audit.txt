@@ -1,0 +1,13 @@
+=== PRE-PROVISIONING AUDIT ===
+2026-09-27T09:01:50+03:00
+
+--- Accounts & Groups ---
+
+--- Directory & Permissions ---
+
+--- Firewall & Packages ---
+
+--- Systemd Units & Security ---
+
+--- Storage Usage ---
+Archived and active journals take up 32M in the file system.

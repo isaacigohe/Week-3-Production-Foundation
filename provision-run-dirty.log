@@ -1,0 +1,114 @@
+==========================================================
+ Starting KijaniKiosk Production Provisioning 
+==========================================================
+[INFO] 2026-09-27T15:21:11+0300 Phase 1: Verifying and installing pinned base packages...
+[INFO] 2026-09-27T15:21:11+0300 Current package holds: acl
+curl
+nginx
+Reading package lists...
+Building dependency tree...
+Reading state information...
+nginx is already the newest version (1.28.3-2ubuntu1.11).
+Solving dependencies...
+0 upgraded, 0 newly installed, 0 to remove and 90 not upgraded.
+[PASS] 2026-09-27T15:21:12+0300 Package 'nginx' pinned and placed on hold.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.18.0-1ubuntu2.7).
+Solving dependencies...
+0 upgraded, 0 newly installed, 0 to remove and 90 not upgraded.
+[PASS] 2026-09-27T15:21:13+0300 Package 'curl' pinned and placed on hold.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+acl is already the newest version (2.3.2-2).
+Solving dependencies...
+0 upgraded, 0 newly installed, 0 to remove and 90 not upgraded.
+[PASS] 2026-09-27T15:21:13+0300 Package 'acl' pinned and placed on hold.
+[INFO] 2026-09-27T15:21:13+0300 Phase 2: Configuring service accounts and primary group...
+[INFO] 2026-09-27T15:21:13+0300 Dirty State Check: Group 'kijanikiosk' already exists. Preserving.
+[INFO] 2026-09-27T15:21:13+0300 Dirty State Check: Account 'kk-api' pre-exists. Ensuring group membership.
+[INFO] 2026-09-27T15:21:13+0300 Dirty State Check: Account 'kk-payments' pre-exists. Ensuring group membership.
+[INFO] 2026-09-27T15:21:13+0300 Dirty State Check: Account 'kk-logs' pre-exists. Ensuring group membership.
+[INFO] 2026-09-27T15:21:13+0300 Phase 3: Building directory trees, setting SGID, and enforcing ACLs...
+[PASS] 2026-09-27T15:21:13+0300 Directory permissions and default ACL masks configured.
+[INFO] 2026-09-27T15:21:13+0300 Phase 4: Deploying hardened systemd service units...
+[PASS] 2026-09-27T15:21:14+0300 Systemd units configured and daemon reloaded.
+[INFO] 2026-09-27T15:21:14+0300 Phase 5: Resetting UFW rules...
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated
+Rules updated (v6)
+[PASS] 2026-09-27T15:21:17+0300 Firewall active with rule comments.
+[INFO] 2026-09-27T15:21:17+0300 Phase 6: Setting up persistent logging and rotation...
+[PASS] 2026-09-27T15:21:17+0300 Journal persistence and logrotate rules set.
+[INFO] 2026-09-27T15:21:17+0300 Phase 7: Running health probes...
+[PASS] 2026-09-27T15:21:17+0300 Health state recorded at /opt/kijanikiosk/health/last-provision.json
+[INFO] 2026-09-27T15:21:17+0300 Phase 8: Running verification assertions...
+kijanikiosk:x:986:kk-api,kk-payments,kk-logs
+[PASS] 2026-09-27T15:21:17+0300 VERIFY PASS: Group kijanikiosk exists
+uid=999(kk-api) gid=986(kijanikiosk) groups=986(kijanikiosk)
+[PASS] 2026-09-27T15:21:17+0300 VERIFY PASS: User kk-api exists
+uid=997(kk-payments) gid=986(kijanikiosk) groups=986(kijanikiosk)
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: User kk-payments exists
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: kk-payments can read payments-api.env
+warning: logrotate in debug mode does nothing except printing debug messages!  Consider using verbose mode (-v) instead if this is not what you want.
+
+reading config file /etc/logrotate.d/kijanikiosk
+Reading state from file: /var/lib/logrotate/status
+Allocating hash table for state file, size 64 entries
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+Creating new state
+
+Handling 1 logs
+
+rotating pattern: /opt/kijanikiosk/shared/logs/*.log after 1 days empty log files are not rotated, (14 rotations), old logs are removed
+switching euid from 0 to 994 and egid from 0 to 986 (pid 36942)
+considering log /opt/kijanikiosk/shared/logs/*.log
+  log /opt/kijanikiosk/shared/logs/*.log does not exist -- skipping
+not running postrotate script, since no logs were rotated
+switching euid from 994 to 0 and egid from 986 to 0 (pid 36942)
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: Logrotate syntax check
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: Firewall rule verification
+[INFO] 2026-09-27T15:21:18+0300 Service kk-api.service exposure score: 3.1 (Max threshold: < 3.5)
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: kk-api security score < 3.5
+[INFO] 2026-09-27T15:21:18+0300 Service kk-payments.service exposure score: 1.3 (Max threshold: < 2.5)
+[PASS] 2026-09-27T15:21:18+0300 VERIFY PASS: kk-payments security score < 2.5
+==========================================================
+[PASS] 2026-09-27T15:21:18+0300 PROVISIONING COMPLETE: All checks passed.

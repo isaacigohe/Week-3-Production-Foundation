@@ -1,0 +1,29 @@
+=== POST REMEDIATION & LOGROTATE ACCESSIBILITY TEST ===
+2026-09-27T13:49:50+03:00
+
+1. Forcing Log Rotation...
+
+2. Inspecting Log Directory ACLs...
+# file: opt/kijanikiosk/shared/logs/
+# owner: root
+# group: kijanikiosk
+# flags: -s-
+user::rwx
+user:kk-logs:r-x
+user:kk-payments:r-x
+user:kk-api:rwx
+group::rwx
+mask::rwx
+other::---
+default:user::rwx
+default:user:kk-logs:r-x
+default:user:kk-payments:r-x
+default:user:kk-api:rwx
+default:group::rwx
+default:group:kijanikiosk:r-x
+default:mask::rwx
+default:other::---
+
+
+3. Testing Write Access Post-Rotation as kk-api...
+PASS: kk-api can write after logrotate
